@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NORDEN — Pitch</title>
+  <style>
+    :root {
+      --ink:#17191c; --ink-2:#25282d; --cream:#f3efe7;
+      --paper:#fbfaf7; --tan:#a58a69; --sage:#7e927f;
+      --line:rgba(23,25,28,.12); --muted:#75766f;
+    }
+    *{box-sizing:border-box} html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{font-family:"Segoe UI",Arial,sans-serif;background:#111318;color:var(--ink)}
+    .deck{position:relative;width:100vw;height:100vh;display:grid;place-items:center}
+    .stage{position:relative;width:min(100vw,177.777vh);height:min(56.25vw,100vh);overflow:hidden;background:var(--paper);box-shadow:0 24px 80px rgba(0,0,0,.38)}
+    .slide{position:absolute;inset:0;display:none;padding:5.2% 6.2%;background:var(--paper);overflow:hidden}
+    .slide.active{display:block;animation:enter .42s cubic-bezier(.2,.8,.2,1)}
+    @keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .slide.dark{background:var(--ink);color:white}.slide.cream{background:var(--cream)}
+    .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;color:var(--tan);margin-bottom:2.2%}
+    h1,h2,h3,p{margin:0} h1{font-family:Georgia,"Times New Roman",serif;font-size:64px;line-height:.95;letter-spacing:-.035em;font-weight:600}
+    h2{font-family:Georgia,"Times New Roman",serif;font-size:43px;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+    h3{font-size:17px;letter-spacing:.01em}.dark h2,.dark h1,.dark h3{color:white}
+    .rule{height:1px;background:var(--line);margin-top:3.1%;margin-bottom:3.4%}.dark .rule{background:rgba(255,255,255,.14)}
+    .muted{color:var(--muted)}.dark .muted{color:#b9bbb6}
+    .brandmark{height:68px;object-fit:contain;display:block}
+
+    /* slide 1 */
+    .cover{display:grid;grid-template-columns:58% 42%;height:100%;margin:-5.2% -6.2%;}
+    .cover-copy{padding:8.8% 0 7.5% 10.7%;display:flex;flex-direction:column;justify-content:space-between;background:var(--ink);color:white}
+    .cover-copy h1{font-size:76px;color:white}.cover-copy h1 em{display:block;font-style:normal;color:var(--tan);font-size:.58em;margin-top:.28em}
+    .cover-copy .tagline{font-size:18px;line-height:1.45;max-width:520px;color:#d9d7d0}
+    .cover-image{position:relative;background:url("WhatsApp Image 2026-11-23 at 21.19.15.jpeg") center 38%/cover no-repeat}
+    .cover-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,25,28,.12),transparent 35%),linear-gradient(0deg,rgba(23,25,28,.34),transparent 45%)}
+    .cover-logo{position:absolute;z-index:2;right:-20px;bottom:-38px;width:145px;height:145px;object-fit:cover;border:10px solid var(--cream);border-radius:50%;box-shadow:0 16px 36px rgba(0,0,0,.24)}
+
+    /* slide 2 */
+    .pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:4.2%}
+    .pain{border-top:1px solid var(--ink);padding-top:18px}.pain .num{font-family:Georgia,serif;font-size:31px;color:var(--tan)}
+    .pain h3{font-size:19px;margin:12px 0 9px}.pain p{font-size:14.5px;line-height:1.48;color:var(--muted)}
+
+    /* slide 3 */
+    .journey{display:grid;grid-template-columns:1.05fr .95fr;gap:7%;height:68%;align-items:center}
+    .journey-line{position:relative;height:270px;margin-top:5%}
+    .journey-line:before{content:"";position:absolute;left:28px;top:28px;bottom:28px;width:1px;background:var(--line)}
+    .step{position:relative;display:grid;grid-template-columns:58px 1fr;align-items:start;margin:0 0 26px}.dot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:white;font-size:13px;font-weight:800;z-index:2}
+    .step:nth-child(2) .dot{background:var(--tan)}.step:nth-child(3) .dot{background:var(--sage)}
+    .step-copy{padding:7px 0 0 20px}.step-copy h3{font-size:16px;margin-bottom:4px}.step-copy p{font-size:13.5px;color:var(--muted);line-height:1.35}
+    .mock{height:290px;border:1px solid var(--line);border-radius:8px;background:white;padding:24px;box-shadow:0 18px 46px rgba(0,0,0,.08)}
+    .mock-head{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;font-size:12px;font-weight:800}
+    .timeline{position:relative;padding:18px 0}.timeline:before{content:"";position:absolute;left:8px;top:25px;bottom:20px;width:1px;background:var(--line)}
+    .event{display:grid;grid-template-columns:18px 1fr auto;gap:10px;margin:17px 0;align-items:center}.event i{width:8px;height:8px;border-radius:50%;background:var(--tan);z-index:2;margin-left:4px}
+    .event b{display:block;font-size:13px}.event span{display:block;font-size:11px;color:var(--muted);margin-top:3px}.event strong{font-size:11px;color:var(--sage)}
+
+    /* slide 4 */
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;height:64%;margin-top:2.5%}
+    .feature{border:1px solid rgba(255,255,255,.12);padding:24px 20px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+    .feature:first-child{border-top:3px solid var(--tan)}.feature:nth-child(2){border-top:3px solid #9c9b8e}.feature:nth-child(3){border-top:3px solid var(--sage)}.feature:nth-child(4){border-top:3px solid #d1bea4}
+    .feature-code{font-size:10px;letter-spacing:.22em;color:#d1baa0;font-weight:800}.feature h3{font-family:Georgia,serif;font-size:27px}.feature p{font-size:14px;line-height:1.45;color:#c8cac4}.feature .glyph{font-family:Georgia,serif;font-size:52px;line-height:1;color:rgba(255,255,255,.16)}
+
+    /* slide 5 */
+    .benefit-layout{display:grid;grid-template-columns:46% 54%;height:78%;gap:0}.benefit-image{margin:-5.2% 0 -5.2% -14.8%;background:url("WhatsApp Image 2026-11-23 at 21.02.19.jpeg") 56% center/cover no-repeat}
+    .benefit-content{padding:2% 0 0 7%}.benefit-list{margin-top:6.8%}
+    .benefit-row{display:grid;grid-template-columns:42px 1fr 1.2fr;gap:12px;align-items:start;border-bottom:1px solid var(--line);padding:15px 0}.benefit-row:last-child{border-bottom:0}
+    .benefit-row .symbol{font-size:17px;color:var(--tan);font-weight:800}.benefit-row h3{font-size:16px}.benefit-row p{font-size:13.5px;line-height:1.4;color:var(--muted)}
+
+    /* slide 6 */
+    .cycle{display:flex;align-items:center;justify-content:center;gap:14px;height:52%;margin-top:1%}.module{width:17.2%;height:150px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--paper)}
+    .module:first-child,.module:last-child{background:var(--ink);color:white;border-color:var(--ink)}.module strong{font-family:Georgia,serif;font-size:21px}.module span{font-size:10px;text-transform:uppercase;letter-spacing:.12em;margin-top:9px;color:var(--tan)}
+    .arrow{font-size:21px;color:var(--tan)}
+    .close-line{display:flex;align-items:flex-end;justify-content:space-between;border-top:1px solid var(--line);padding-top:3.3%;height:20%}.close-line h2{font-size:32px}.close-line p{font-size:13px;color:var(--muted);text-align:right;max-width:390px;line-height:1.45}
+
+    .nav{position:absolute;z-index:20;right:22px;bottom:18px;display:flex;align-items:center;gap:8px}
+    .nav button{width:38px;height:38px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(20,22,25,.72);color:white;cursor:pointer;font-size:18px;transition:.2s}.nav button:hover{background:var(--tan)}
+    .counter{height:38px;min-width:54px;border-radius:30px;background:rgba(20,22,25,.72);color:white;display:grid;place-items:center;font-size:11px;font-weight:800;letter-spacing:.08em}
+    .progress{position:absolute;z-index:22;left:0;bottom:0;height:3px;background:var(--tan);transition:width .35s}
+
+    @media (max-width:900px){h2{font-size:34px}.cover-copy h1{font-size:58px}.pain p{font-size:12px}.feature p{font-size:12px}}
+    @media print{html,body{overflow:visible;background:white}.deck{display:block}.stage{width:100vw;height:56.25vw;box-shadow:none}.slide{display:block!important;position:relative;width:100vw;height:56.25vw;page-break-after:always}.nav,.progress{display:none}}
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <div class="stage" id="stage">
+      <section class="slide dark active">
+        <div class="cover">
+          <div class="cover-copy">
+            <div>
+              <div class="eyebrow">Pitch executivo · 3 minutos</div>
+              <h1>NORDEN <em>Seu estilo.<br>Sua evolução.</em></h1>
+            </div>
+            <p class="tagline">Um salão inteligente que conecta agendamento, atendimento, cuidado e compra em uma única jornada.</p>
+          </div>
+          <div class="cover-image">
+            <img class="cover-logo" src="Logo.jpeg" alt="Logo NORDEN" />
+          </div>
+        </div>
+      </section>
+
+      <section class="slide cream">
+        <div class="eyebrow">01 · O problema</div>
+        <h2>O cuidado masculino ainda<br>acontece de forma fragmentada.</h2>
+        <div class="rule"></div>
+        <div class="pain-grid">
+          <article class="pain"><div class="num">1</div><h3>Agenda manual</h3><p>Conversas, remarcações e horários ociosos consumem tempo da equipe.</p></article>
+          <article class="pain"><div class="num">2</div><h3>Sem continuidade</h3><p>O procedimento fica sem registro acessível para acompanhar a evolução.</p></article>
+          <article class="pain"><div class="num">3</div><h3>Cuidado esquecido</h3><p>Orientações de manutenção se perdem depois que o cliente sai do salão.</p></article>
+          <article class="pain"><div class="num">4</div><h3>Compra desconectada</h3><p>Produtos recomendados são difíceis de encontrar no momento certo.</p></article>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">02 · A solução</div>
+        <h2>Uma jornada completa,<br>do agendamento à manutenção.</h2>
+        <div class="rule"></div>
+        <div class="journey">
+          <div class="journey-line">
+            <div class="step"><div class="dot">01</div><div class="step-copy"><h3>Antes</h3><p>Agende serviço, profissional e horário em poucos passos.</p></div></div>
+            <div class="step"><div class="dot">02</div><div class="step-copy"><h3>Durante</h3><p>Registre preferências, procedimento e produtos utilizados.</p></div></div>
+            <div class="step"><div class="dot">03</div><div class="step-copy"><h3>Depois</h3><p>Receba histórico, manual de cuidado e recomendações relevantes.</p></div></div>
+          </div>
+          <div class="mock">
+            <div class="mock-head"><span>NORDEN JOURNEY</span><span>NOV 2026</span></div>
+            <div class="timeline">
+              <div class="event"><i></i><div><b>Corte e manutenção</b><span>Profissional · 45 min</span></div><strong>CONCLUÍDO</strong></div>
+              <div class="event"><i></i><div><b>Barba modelada</b><span>Produtos registrados</span></div><strong>HISTÓRICO</strong></div>
+              <div class="event"><i></i><div><b>Manual de cuidados</b><span>Orientação personalizada</span></div><strong>ATIVO</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark">
+        <div class="eyebrow">03 · Diferenciais</div>
+        <h2>Tecnologia que resolve<br>problemas reais.</h2>
+        <div class="rule"></div>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-code">NORDEN / FLOW</div><div class="glyph">↗</div><h3>Realocação</h3><p>Aproveita cancelamentos sugerindo novos horários, com aprovação do cliente.</p></article>
+          <article class="feature"><div class="feature-code">NORDEN / JOURNEY</div><div class="glyph">◎</div><h3>Histórico</h3><p>Organiza atendimentos, produtos utilizados e próximas necessidades.</p></article>
+          <article class="feature"><div class="feature-code">NORDEN / CARE</div><div class="glyph">≡</div><h3>Cuidados</h3><p>Entrega manual personalizado para preservar o resultado em casa.</p></article>
+          <article class="feature"><div class="feature-code">NORDEN / STORE</div><div class="glyph">□</div><h3>Comércio</h3><p>Conecta recomendações profissionais à loja com retirada ou entrega.</p></article>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="benefit-layout">
+          <div class="benefit-image"></div>
+          <div class="benefit-content">
+            <div class="eyebrow">04 · Impacto</div>
+            <h2>Mais conveniência.<br>Mais controle.</h2>
+            <div class="benefit-list">
+              <div class="benefit-row"><div class="symbol">01</div><h3>Para o cliente</h3><p>Agendar rápido, lembrar o que foi feito e cuidar do resultado.</p></div>
+              <div class="benefit-row"><div class="symbol">02</div><h3>Para o profissional</h3><p>Atender com contexto, alertas pertinentes e registro rápido.</p></div>
+              <div class="benefit-row"><div class="symbol">03</div><h3>Para o gestor</h3><p>Preencher horários, reduzir retrabalho e controlar pedidos e estoque.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide cream">
+        <div class="eyebrow">05 · MVP</div>
+        <h2>Um único sistema para<br>todo o ciclo de cuidado.</h2>
+        <div class="cycle">
+          <div class="module"><strong>Agenda</strong><span>Agendamento</span></div><div class="arrow">→</div>
+          <div class="module"><strong>Flow</strong><span>Realocação</span></div><div class="arrow">→</div>
+          <div class="module"><strong>Journey</strong><span>Histórico</span></div><div class="arrow">→</div>
+          <div class="module"><strong>Care</strong><span>Cuidados</span></div><div class="arrow">→</div>
+          <div class="module"><strong>Store</strong><span>Loja</span></div>
+        </div>
+        <div class="close-line">
+          <h2>Seu estilo. Sua evolução.</h2>
+          <p>Estrutura pronta para validar a experiência, conectar operações e crescer com dados reais.</p>
+        </div>
+      </section>
+
+      <div class="progress" id="progress"></div>
+      <div class="nav"><div class="counter" id="counter">01 / 06</div><button id="prev" aria-label="Slide anterior">‹</button><button id="next" aria-label="Próximo slide">›</button></div>
+    </div>
+  </main>
+  <script>
+    const slides=[...document.querySelectorAll('.slide')];
+    const counter=document.querySelector('#counter'); const progress=document.querySelector('#progress');
+    let current=0;
+    function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');progress.style.width=((current+1)/slides.length*100)+'%'}
+    document.querySelector('#prev').onclick=()=>show(current-1);document.querySelector('#next').onclick=()=>show(current+1);
+    addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(current+1);if(['ArrowLeft','PageUp'].includes(e.key))show(current-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});
+    let touchX=null;addEventListener('touchstart',e=>touchX=e.changedTouches[0].clientX);addEventListener('touchend',e=>{if(touchX!==null){const d=e.changedTouches[0].clientX-touchX;if(Math.abs(d)>45)show(current+(d<0?1:-1));touchX=null}});
+    show(0);
+  </script>
+</body>
+</html>
