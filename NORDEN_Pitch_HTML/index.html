@@ -43,6 +43,9 @@
     h1,h2,h3,p{margin:0} h1{font-family:Georgia,"Times New Roman",serif;font-size:72px;line-height:.95;letter-spacing:-.035em;font-weight:600}
     h2{font-family:Georgia,"Times New Roman",serif;font-size:52px;line-height:1.05;letter-spacing:-.025em;font-weight:600}
     h3{font-size:21px;letter-spacing:.01em}.dark h2,.dark h1,.dark h3{color:white}
+    .closing-slide{display:none!important;place-items:center;text-align:center;background:#000!important}
+    .closing-slide.active{display:grid!important}
+    .closing-content{max-width:980px;padding:5%}.closing-content h2{font-size:64px;line-height:1.08}.closing-content h2 em{display:block;color:var(--tan);font-style:normal;margin-top:.2em}.closing-content p{margin-top:32px;font-size:20px;color:#c8cac4}
   </style>
 </head>
 <body>
@@ -61,8 +64,15 @@
     <section class="slide">
       <div class="benefit-layout"><div class="benefit-image"><img src="Logo.jpeg" alt="Logo NORDEN" /></div><div class="benefit-content"><div class="eyebrow">04 · Impacto</div><h2>Mais conveniência.<br>Mais controle.</h2><div class="benefit-list"><div class="benefit-row"><div class="symbol">01</div><h3>Para o cliente</h3><p>Agendar rápido, lembrar o que foi feito e cuidar do resultado.</p></div><div class="benefit-row"><div class="symbol">02</div><h3>Para o profissional</h3><p>Atender com contexto, alertas pertinentes e registro rápido.</p></div><div class="benefit-row"><div class="symbol">03</div><h3>Para o gestor</h3><p>Preencher horários, reduzir retrabalho e controlar pedidos e estoque.</p></div></div></div></div>
     </section>
+    <section class="slide closing-slide">
+      <div class="closing-content">
+        <div class="eyebrow">05 · Conclusão</div>
+        <h2>Uma nova era para o cuidado masculino.</h2>
+        <p>O NORDEN integra tecnologia e expertise para uma experiência sem igual.</p>
+      </div>
+    </section>
     <div class="progress" id="progress"></div>
-    <div class="nav"><div class="counter" id="counter">01 / 04</div><button id="prev" aria-label="Slide anterior">‹</button><button id="next" aria-label="Próximo slide">›</button></div>
+    <div class="nav"><div class="counter" id="counter">01 / 05</div><button id="prev" aria-label="Slide anterior">‹</button><button id="next" aria-label="Próximo slide">›</button></div>
   </div></main>
   <script>
     const slides=[...document.querySelectorAll('.slide')];
